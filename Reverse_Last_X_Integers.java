@@ -1,38 +1,58 @@
-// The program must accept N integers and an integer X as the input. The program must print the last X integers (among N integers) in reverse order as the output.
+// The program must accept an integer matrix of size RxC and an integer X as the
+// input The program must reverse last X integers in each row. Finally, the program
+// must print the modified matrix as the output.
 
-// Boundary Condition(s);
-// 1<= N <=1000
-// 1<= X <=N
+// Boundary condition(s):
+// 1 < = 100
 
 // Input Format:
-// The first line contains the values of N and X separated by a space.
-// The second line contains N integers separated by a space(s).
+// The first line contains two integers R and C separated by a space.
+// The next R lines contain C integers separated by space(s).
+// The last line contains the integer X.
 
 // Output Format:
-// The first line contains the last X integers in reverse order separated by a space.
+// The first R lines contain C integers separated by space(s).
 
 // Example Input/Output 1:
 // Input:
-// 7 4
-// 20 84 64 19 63 26 99
+// 35
+// 44 12 12 47 37
+// 18 18 11 11 19
+// 38 27 23 40 14
+// 3
+
 
 // Output:
-// 99 26 63 19
+// 44 12 37 47 12
+// 18 18 1911 11
+// 38 27 14 40 23
 
 // Explanation:
-// The last 4 integers are 19,63,26 and 99.
-// The last 4 integers in reverse order are 99,26,63 and 19.
-// Hence the output is 99 26 63 19.
-
+// The Last three integers in the ISt row are 12, 47 and 37. Reverse those integers
+// and then print them as the output.
+// 44 12
+// The Last three integers in the 2nd row are 11, 11 and 19. Reverse those integers
+// and then print them as the output.
+// 44 12 3747 12
+// 18 18
+// The Last three integers in the 3rd row are 23, 40 and 14. Reverse those integers
+// and then print them as the output.
+// 44 12 37 47 12
+// 18 18 19 11 11
+// 38 27 14 40 23
 
 // Example Input/Output 2:
 // Input:
-// 10 10
-// 1 2 3 4 5 6 7 8 9 10
+// 3 3
+// 1 2 3
+// 4 5 6
+// 7 8 9
+// 2
 
 // Output:
-// 10 9 8 7 6 5 4 3 2 1
-
+// 1 3 2
+// 4 6 5
+// 7 9 8
 
 
 
@@ -42,16 +62,23 @@ public class Reverse_Last_X_Integers
     public static void main(String[] arg)
     {
         Scanner obj=new Scanner(System.in);
-        int a=obj.nextInt(),b=obj.nextInt(),j=0,count=0;
-        int[] array=new int[a];
-        for(int i=0;i<a;i++)array[i]=obj.nextInt();
-        for(int i=a-1;i>=0;i--)
+        int row=obj.nextInt(),col=obj.nextInt();
+        int[][] mat=new int[row][col];
+        for(int i=0;i<row;i++)
         {
-            if(count!=b)
+            for(int j=0;j<col;j++)
             {
-                System.out.print(array[i]+" ");
-                count++;
+                mat[i][j]=obj.nextInt();
             }
+        }
+        int key=obj.nextInt(),sub=Math.abs(key-col);
+        for(int i=0;i<row;i++)
+        {
+            for(int j=0;j<sub;j++)
+                System.out.print(mat[i][j]+" ");
+            for(int k=col-1;k>=sub;k--)
+                System.out.print(mat[i][k]+" ");
+            System.out.println();
         }
     }
 }
