@@ -1,2 +1,1 @@
 # SkillRack-Daily-Challenge
-..
