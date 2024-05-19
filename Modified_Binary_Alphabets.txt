@@ -1,0 +1,58 @@
+// The program must accept an integer N as the input. The program must find the binary
+// representation of N. Then the program must replace all the 1 •s by the lower case alphabets
+// from •a' (left to right). Then the program must replace all the O's by the upper case
+// alphabets from 'A' (right to left). Finally, the program must print the modified
+// representation of N as the output.
+
+// Boundary Condition(s):
+// 1 <= N <= 2^26
+
+// Input Format:
+// The first line contains N.
+
+// Output Format:
+// The first line contains the modified representation of N.
+
+// Example Input/Output 1:
+// Input:
+// 34
+
+// Output:
+// aDCBbA
+
+// Explanation:
+// The binary representation of 34 is 100010.
+// After replacing all the I's by the lower case alphabets from •a' (left to right), the binary
+// representation becomes a000b0.
+// After replacing all the O's by the upper case alphabets from 'A' (right to left), the binary
+// representation becomes aDCBbA.
+// Hence the output is aDCBbA
+
+// Example Input/Output 2:
+// Input:
+// 19
+
+// Output:
+// aBAbc
+
+
+import java.util.*;
+public class Modified_Binary_Alphabets
+{
+    public static void main(String[] arg)
+    {
+        Scanner obj=new Scanner(System.in);
+        int N=obj.nextInt();
+        String bin=Integer.toBinaryString(N);
+        char chl='a',chu='A';
+        char[] arr=new char[bin.length()];
+        for(int i=0;i<bin.length();i++)
+            if(bin.charAt(i)=='1')
+                arr[i]=chl++;
+        for(int i=bin.length()-1;i>=0;i--)
+            if(bin.charAt(i)=='0')
+                arr[i]=chu++;
+        for(int i=0;i<bin.length();i++)
+            System.out.print(arr[i]);
+    }
+}
