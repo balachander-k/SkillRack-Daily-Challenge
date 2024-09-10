@@ -1,0 +1,78 @@
+// The program must accept N integers as the input. For every three integers among the given
+// N integers, the program must print the largest possible three-digit integer using their unit
+// digits. If it is not possible to form a three-digit integer, then the program must print -1 as
+// the output.
+
+// Note: The value of N is always a multiple of 3.
+
+// Boundary Condition(s):
+// 3 <= N <= 999
+// 0 <= Each integer value <= 10^8
+
+// Input Format:
+// The first line contains N.
+
+// Output Format:
+// The first line contains N/3 integer values separated by a space.
+
+// Example Input/Output 1:
+// Input:
+// 6
+// 988 54 19 87 64 25
+
+// Output:
+// 984 754
+
+// Explanation:
+// The largest three-digit integer formed using the unit digits of 988 54 19 is 984.
+// The largest three-digit integer formed using the unit digits of 87 64 25 is 754.
+// Hence the output is
+// 984 754
+
+// Example Input/Output 2:
+// Input:
+// 9
+// 2 50 18 590 10 890 87 68 18
+
+// Output:
+// 820 -1 887
+
+
+import java.util.*;
+public class Three_Digit_Integer_Unit_Digit 
+{
+    public static void main(String[] arg)
+    {
+        Scanner obj=new Scanner(System.in);
+        int N=obj.nextInt(),k=0;
+        int[] arr=new int[N];
+        for(int i=0;i<N;i++)
+            arr[i]=obj.nextInt();
+        while(true)
+        {
+            ArrayList<Integer> num=new ArrayList<Integer>();
+            int count=0,c=0;
+            while(count<3)
+            {
+                if(k==N)
+                {
+                    c=1;
+                    break;
+                }
+                num.add(arr[k++]%10);
+                count++;
+            }
+            Collections.sort(num);
+            if(c==1)break;
+            if(num.size()==3)
+            {
+                String tem="";
+                for(int j=num.size()-1;j>=0;j--)
+                    tem+=String.valueOf(num.get(j));
+                int val=Integer.valueOf(tem);
+                if(val!=0)System.out.print(val+" ");
+            }
+            else System.out.print("-1"+" ");
+        }
+    }
+}
